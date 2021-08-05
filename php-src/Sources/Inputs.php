@@ -4,7 +4,7 @@ namespace kalanis\kw_address_handler\Sources;
 
 
 use kalanis\kw_input\Interfaces\IEntry;
-use kalanis\kw_input\Interfaces\IInputs;
+use kalanis\kw_input\Interfaces\IVariables;
 
 
 /**
@@ -15,9 +15,9 @@ use kalanis\kw_input\Interfaces\IInputs;
  */
 class Inputs extends Sources
 {
-    public function __construct(IInputs $inputs, string $entry = 'REQUEST_URI')
+    public function __construct(IVariables $inputs, string $entry = 'REQUEST_URI')
     {
-        $server = $inputs->intoKeyObjectArray($inputs->getIn($entry, [IEntry::SOURCE_SERVER]));
+        $server = $inputs->getInArray($entry, [IEntry::SOURCE_SERVER]);
         if (isset($server[$entry])) {
             $this->setAddress($server[$entry]);
         }
