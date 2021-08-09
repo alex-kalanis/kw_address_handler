@@ -23,4 +23,15 @@ class SourcesTest extends CommonTestClass
         $source = new Sources\Address('//abc/def//ghi/jkl');
         $this->assertEquals('/abc/def//ghi/jkl', (string)$source);
     }
+
+    public function testArrayAccess()
+    {
+        $array = new \ArrayObject();
+        $source1 = new Sources\InputArray($array, 'tester');
+        $this->assertEmpty('', (string)$source1);
+
+        $array->offsetSet('tester', '//abc/def//ghi/jkl');
+        $source2 = new Sources\InputArray($array, 'tester');
+        $this->assertEquals('/abc/def//ghi/jkl', (string)$source2);
+    }
 }
