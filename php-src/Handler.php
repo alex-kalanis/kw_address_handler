@@ -34,7 +34,7 @@ class Handler
 
     protected function parse(): void
     {
-        $parts = parse_url($this->source->getAddress());
+        $parts = parse_url($this->source->/** @scrutinizer ignore-call */getAddress());
         if ((false !== $parts) && isset($parts['path'])) {
             $this->source->setPath($parts['path']);
             if (!isset($parts['query'])) {
@@ -68,7 +68,7 @@ class Handler
      */
     public function getAddress(): ?string
     {
-        return $this->source ? $this->rebuild()->source->getAddress() : null ;
+        return $this->source ? $this->rebuild()->source->/** @scrutinizer ignore-call */getAddress() : null;
     }
 
     protected function rebuild(): self
@@ -107,60 +107,60 @@ class Handler
     public static function http_parse_query(string $queryString, string $argSeparator = '&', int $decType = PHP_QUERY_RFC1738): array
     {
         if (empty($queryString)) { return []; }
-        $result             = [];
-        $parts              = explode($argSeparator, $queryString);
+        $result = [];
+        $parts  = explode($argSeparator, $queryString);
 
         foreach ($parts as $part) {
-            list($paramName, $paramValue)   = array_pad(explode('=', $part, 2), 2, '');
+            list($paramName, $paramValue) = array_pad(explode('=', $part, 2), 2, '');
 
             switch ($decType) {
                 case PHP_QUERY_RFC3986:
-                    $paramName      = rawurldecode($paramName);
-                    $paramValue     = rawurldecode($paramValue);
+                    $paramName  = rawurldecode($paramName);
+                    $paramValue = rawurldecode($paramValue);
                     break;
 
                 case PHP_QUERY_RFC1738:
                 default:
-                    $paramName      = urldecode($paramName);
-                    $paramValue     = urldecode($paramValue);
+                    $paramName  = urldecode($paramName);
+                    $paramValue = urldecode($paramValue);
                     break;
             }
 
 
             if (preg_match_all('/\[([^\]]*)\]/m', $paramName, $matches)) {
-                $paramName      = substr($paramName, 0, intval(strpos($paramName, '[')));
-                $keys           = array_merge([$paramName], $matches[1]);
+                $paramName = substr($paramName, 0, intval(strpos($paramName, '[')));
+                $keys = array_merge([$paramName], $matches[1]);
             } else {
-                $keys           = [$paramName];
+                $keys = [$paramName];
             }
 
-            $target         = &$result;
+            $target = &$result;
 
             foreach ($keys as $index) {
                 if ('' === $index) {
                     if (isset($target)) {
                         if (is_array($target)) {
-                            $intKeys        = array_filter(array_keys($target), 'is_int');
-                            $index  = count($intKeys) ? max($intKeys)+1 : 0;
+                            $intKeys = array_filter(array_keys($target), 'is_int');
+                            $index   = count($intKeys) ? max($intKeys)+1 : 0;
                         } else {
                             $target = [$target];
                             $index  = 1;
                         }
                     } else {
-                        $target         = [];
-                        $index          = 0;
+                        $target = [];
+                        $index  = 0;
                     }
                 } elseif (isset($target[$index]) && !is_array($target[$index])) {
                     $target[$index] = [$target[$index]];
                 }
 
-                $target         = &$target[$index];
+                $target = &$target[$index];
             }
 
             if (is_array($target)) {
-                $target[]   = $paramValue;
+                $target[] = $paramValue;
             } else {
-                $target     = $paramValue;
+                $target = $paramValue;
             }
         }
 

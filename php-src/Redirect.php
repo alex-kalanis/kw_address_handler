@@ -20,8 +20,8 @@ class Redirect
     {
         if (0 !== strncmp('cli', PHP_SAPI, 3)) {
             if (true !== headers_sent()) {
-                if ($step) {
-                    header( 'Refresh:' . $step . ';url=' . $this->removeNullBytes($redirectTo) );
+                if (!is_null($step) && (0 !== $step)) {
+                    header('Refresh:' . $step . ';url=' . $this->removeNullBytes($redirectTo));
                 } else {
                     header('Location: ' . $this->removeNullBytes($redirectTo), true, $targetMethod);
                     exit(0);
