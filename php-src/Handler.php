@@ -137,7 +137,7 @@ class Handler
             $target         = &$result;
 
             foreach ($keys as $index) {
-                if ($index === '') {
+                if ('' === $index) {
                     if (isset($target)) {
                         if (is_array($target)) {
                             $intKeys        = array_filter(array_keys($target), 'is_int');
@@ -196,7 +196,7 @@ class Handler
 
             // Only include the port if it is not the default port of the scheme
             if (isset($parts['port'])
-                && !(($scheme == 'http' && $parts['port'] == 80) || ($scheme == 'https' && $parts['port'] == 443))
+                && !(('http' == $scheme && 80 == $parts['port']) || ('https' == $scheme && 443 == $parts['port']))
             ) {
                 $url .= ':' . $parts['port'];
             }
@@ -205,7 +205,7 @@ class Handler
         // Add the path component if present
         if (isset($parts['path']) && (0 !== strlen(strval($parts['path'])))) {
             // Always ensure that the path begins with '/' if set and something is before the path
-            if ($url && strval($parts['path'])[0] != '/' && substr($url, -1) != '/') {
+            if ($url && strval($parts['path'])[0] != '/' && '/' != substr($url, -1)) {
                 $url .= '/';
             }
             $url .= $parts['path'];

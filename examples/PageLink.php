@@ -56,7 +56,7 @@ class PageLink
 
     public function getPageLink(): string
     {
-        $this->urlVariable->setVariableValue((string)$this->page);
+        $this->urlVariable->setVariableValue((string) $this->page);
         return strval($this->urlHandler->getAddress());
     }
 }

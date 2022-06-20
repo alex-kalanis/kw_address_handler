@@ -18,8 +18,8 @@ class Redirect
 
     public function __construct(string $redirectTo, int $targetMethod = self::TARGET_MOVED, ?int $step = null)
     {
-        if (strncmp('cli', PHP_SAPI, 3) !== 0) {
-            if (headers_sent() !== true) {
+        if (0 !== strncmp('cli', PHP_SAPI, 3)) {
+            if (true !== headers_sent()) {
                 if ($step) {
                     header( 'Refresh:' . $step . ';url=' . $this->removeNullBytes($redirectTo) );
                 } else {
