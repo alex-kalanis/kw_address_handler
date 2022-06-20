@@ -36,11 +36,11 @@ class Handler
     {
         $parts = parse_url($this->source->/** @scrutinizer ignore-call */getAddress());
         if ((false !== $parts) && isset($parts['path'])) {
-            $this->source->setPath($parts['path']);
+            $this->source->/** @scrutinizer ignore-call */setPath($parts['path']);
             if (!isset($parts['query'])) {
                 $parts['query'] = '';
             }
-            $this->params->setParamsData(static::http_parse_query($parts['query']));
+            $this->params->/** @scrutinizer ignore-call */setParamsData(static::http_parse_query($parts['query']));
         }
     }
 
@@ -88,7 +88,7 @@ class Handler
                 }
             }
             $parts['query'] = http_build_query($queryArray);
-            $this->source->setAddress($this->buildAddress($parts));
+            $this->source->/** @scrutinizer ignore-call */setAddress($this->buildAddress($parts));
         }
         return $this;
     }
