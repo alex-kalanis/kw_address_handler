@@ -40,7 +40,7 @@ class Handler
             if (!isset($parts['query'])) {
                 $parts['query'] = '';
             }
-            $this->params->/** @scrutinizer ignore-call */setParamsData(static::http_parse_query($parts['query']));
+            $this->params->setParamsData(static::http_parse_query($parts['query']));
         }
     }
 
@@ -73,7 +73,7 @@ class Handler
 
     protected function rebuild(): self
     {
-        $parts = parse_url($this->source->getAddress());
+        $parts = parse_url($this->source->/** @scrutinizer ignore-call */getAddress());
         if (false !== $parts) {
             if (!isset($parts['query'])) {
                 $parts['query'] = '';
