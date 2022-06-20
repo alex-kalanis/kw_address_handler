@@ -36,6 +36,10 @@ class Certs
         $this->uriHandler = new Handler(new ServerRequest());
     }
 
+    /**
+     * @param \ArrayAccess $credentials
+     * @throws \Exception
+     */
     public function process(\ArrayAccess $credentials): void
     {
         $stamp = $credentials->offsetExists('timestamp') ? $credentials->offsetGet('timestamp') : 0 ;
@@ -49,7 +53,7 @@ class Certs
             $data = $this->uriHandler->getAddress();
 
             // verify
-            $result = (string)$digest === md5((string)$data . $this->localKey);
+            $result = strval($digest) === md5(strval($data) . $this->localKey);
             if ($result) {
                 // OK
                 throw new \Exception('Passed?!');

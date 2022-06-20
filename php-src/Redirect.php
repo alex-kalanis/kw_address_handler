@@ -30,8 +30,8 @@ class Redirect
         }
     }
 
-    protected function removeNullBytes($string, $nullTo = '')
+    protected function removeNullBytes(string $string, string $nullTo = ''): string
     {
-        return str_replace(chr(0), $nullTo, $string);
+        return strval(str_replace(chr(0), $nullTo, $string));
     }
 }

@@ -14,9 +14,9 @@ class BasicTest extends CommonTestClass
     public function testEmptySources(): void
     {
         $handler = new Handler();
-        $this->assertEquals(null, $handler->getSource());
-        $this->assertEquals(null, $handler->getAddress());
-        $this->assertEquals(null, $handler->getParams());
+        $this->assertNull($handler->getSource());
+        $this->assertNull($handler->getAddress());
+        $this->assertNotNull($handler->getParams());
 
         $handler = new Handler(new Sources\Sources());
         $this->assertNotEmpty($handler->getSource());
