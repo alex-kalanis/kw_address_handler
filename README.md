@@ -1,6 +1,6 @@
 # kw_address_handler
 
-[![Build Status](https://travis-ci.org/alex-kalanis/kw_address_handler.svg?branch=master)](https://travis-ci.org/alex-kalanis/kw_address_handler)
+[![Build Status](https://app.travis-ci.com/alex-kalanis/kw_address_handler.svg?branch=master)](https://app.travis-ci.com/github/alex-kalanis/kw_address_handler)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_address_handler/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_address_handler/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_address_handler/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_address_handler)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)

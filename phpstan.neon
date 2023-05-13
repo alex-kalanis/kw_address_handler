@@ -17,3 +17,5 @@ parameters:
 			message: '#on kalanis\\kw_address_handler\\Sources\\Sources\|null.#'
 			path: 'php-src/Handler.php'
 			# tested before it can do some problems
+		- '#Parameter \#1 \$va[rl]u?e? of function [si][tn][rt]val expects#'
+			# problems with strval and intval
