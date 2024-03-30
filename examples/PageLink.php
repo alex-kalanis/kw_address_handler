@@ -29,16 +29,12 @@ echo $urlLink->getPageLink(); // got page 3
  */
 class PageLink
 {
-    const DEFAULT_VAR_NAME = 'page';
+    protected const DEFAULT_VAR_NAME = 'page';
 
-    /** @var Handler */
-    protected $urlHandler;
-    /** @var SingleVariable */
-    protected $urlVariable;
-    /** @var int */
-    protected $page = 1;
-    /** @var string */
-    protected $varName = self::DEFAULT_VAR_NAME;
+    protected Handler $urlHandler;
+    protected SingleVariable $urlVariable;
+    protected int $page = 1;
+    protected string $varName = self::DEFAULT_VAR_NAME;
 
     public function __construct(Handler $urlHandler, int $page = 1, string $variableName = self::DEFAULT_VAR_NAME)
     {

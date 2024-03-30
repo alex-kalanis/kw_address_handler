@@ -24,12 +24,9 @@ use kalanis\kw_address_handler\Sources\ServerRequest;
  */
 class Certs
 {
-    /** @var string */
-    protected $localKey = '99999';
-    /** @var string */
-    protected $localSalt = 'xyz';
-    /** @var Handler */
-    protected $uriHandler = null;
+    protected string $localKey = '99999';
+    protected string $localSalt = 'xyz';
+    protected Handler $uriHandler;
 
     public function __construct()
     {

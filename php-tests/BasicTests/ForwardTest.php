@@ -5,6 +5,7 @@ namespace BasicTests;
 
 use CommonTestClass;
 use kalanis\kw_address_handler\Forward;
+use kalanis\kw_address_handler\HandlerException;
 
 
 class ForwardTest extends CommonTestClass
@@ -14,6 +15,7 @@ class ForwardTest extends CommonTestClass
      * @param bool $has
      * @param string $forwardLink
      * @param string $fullLink
+     * @throws HandlerException
      * @dataProvider forwardProvider
      */
     public function testBasic(string $basicLink, bool $has, string $forwardLink, string $fullLink): void
