@@ -12,5 +12,5 @@ $config = new Configuration();
 
 return $config
     // ignore errors on specific packages and paths
-    ->ignoreErrorsOnPackageAndPath('alex-kalanis/kw_inputs', __DIR__ . '/php-src/Sources/Inputs.php', [ErrorType::DEV_DEPENDENCY_IN_PROD])
+    ->ignoreErrorsOnPackageAndPath('alex-kalanis/kw_input', __DIR__ . '/php-src/Sources/Inputs.php', [ErrorType::DEV_DEPENDENCY_IN_PROD])
 ;
